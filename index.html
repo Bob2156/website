@@ -3,34 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rotating Star</title>
+    <title>Discord Ping Response</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin-top: 50px;
         }
-        .star {
-            font-size: 50px;
+        #message {
+            font-size: 24px;
             color: blue;
-            display: inline-block;
-            transition: transform 1s ease-in-out;
+            font-weight: bold;
         }
     </style>
     <script>
-        function rotateStar() {
-            const star = document.getElementById("star");
-            star.style.transform = "rotate(360deg)";
-            setTimeout(() => {
-                star.style.transform = "rotate(0deg)";
-            }, 1000);
+        async function fetchMessage() {
+            try {
+                const response = await fetch('/api/update');
+                const data = await response.json();
+                document.getElementById('message').textContent = data.message || '';
+            } catch (error) {
+                console.error('Error fetching message:', error);
+            }
         }
+
+        // Poll the server every 5 seconds to check for updates
+        setInterval(fetchMessage, 5000);
+        fetchMessage();
     </script>
 </head>
 <body>
-    <h1>Rotating Star</h1>
-    <p>Click the button to see the star rotate!</p>
-    <button onclick="rotateStar()">Click Me</button>
-    <div id="star" class="star">★</div>
+    <h1>Discord Ping Response</h1>
+    <p id="message"></p>
 </body>
 </html>
