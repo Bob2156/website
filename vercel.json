@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "bot.py", "use": "@vercel/python" },
+    { "src": "data/message.json", "use": "@vercel/static" },
+    { "src": "index.html", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/data/message.json", "dest": "/data/message.json" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}
