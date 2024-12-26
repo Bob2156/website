@@ -2,7 +2,10 @@ import discord
 import requests
 import os
 
+# Load the bot token from environment variables
 TOKEN = os.environ.get("DISCORD_BOT_TOKEN")
+
+# URL to update the JSON file hosted on Vercel
 API_URL = "https://your-vercel-domain.vercel.app/data/message.json"
 
 intents = discord.Intents.default()
@@ -16,7 +19,7 @@ async def on_ready():
 async def on_message(message):
     if message.content == "/ping":
         try:
-            # Update the JSON file
+            # Send a PUT request to update the JSON file
             response = requests.put(API_URL, json={"message": "!pong"})
             if response.status_code == 200:
                 await message.channel.send("!pong")
