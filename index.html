@@ -8,6 +8,11 @@
         function showMessage() {
             const messageContainer = document.getElementById("message");
             messageContainer.textContent = "Button clicked! Welcome to my website!";
+            
+            // Remove the message after 1 second
+            setTimeout(() => {
+                messageContainer.textContent = "";
+            }, 1000);
         }
     </script>
 </head>
