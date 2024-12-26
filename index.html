@@ -3,23 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Vercel Site</title>
+    <title>Rotating Star</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .star {
+            font-size: 50px;
+            color: blue;
+            display: inline-block;
+            transition: transform 1s ease-in-out;
+        }
+    </style>
     <script>
-        function showMessage() {
-            const messageContainer = document.getElementById("message");
-            messageContainer.textContent = "Button clicked! Welcome to my website!";
-            
-            // Remove the message after 1 second
+        function rotateStar() {
+            const star = document.getElementById("star");
+            star.style.transform = "rotate(360deg)";
             setTimeout(() => {
-                messageContainer.textContent = "";
+                star.style.transform = "rotate(0deg)";
             }, 1000);
         }
     </script>
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>This is a simple website hosted on Vercel.</p>
-    <button onclick="showMessage()">Click Me</button>
-    <p id="message" style="color: blue; font-weight: bold;"></p>
+    <h1>Rotating Star</h1>
+    <p>Click the button to see the star rotate!</p>
+    <button onclick="rotateStar()">Click Me</button>
+    <div id="star" class="star">★</div>
 </body>
 </html>
