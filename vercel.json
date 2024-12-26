@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "api/discord_bot.py", "use": "@vercel/python" },
+    { "src": "api/update.js", "use": "@vercel/node" }
+  ]
+}
