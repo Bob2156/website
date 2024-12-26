@@ -2,9 +2,9 @@ import discord
 import requests
 import os
 
-# Load the bot token and guild ID from environment variables
+# Load environment variables
 TOKEN = os.environ.get("DISCORD_BOT_TOKEN")
-GUILD_ID = os.environ.get("GUILD_ID")  # Add your Discord server (guild) ID
+GUILD_ID = os.environ.get("GUILD_ID")  # Your Discord server (guild) ID
 
 # URL to update the JSON file hosted on Vercel
 API_URL = "https://your-vercel-domain.vercel.app/data/message.json"
@@ -31,9 +31,12 @@ async def ping(interaction: discord.Interaction):
 @bot.event
 async def on_ready():
     """Sync slash commands to the guild."""
-    guild = discord.Object(id=int(GUILD_ID))  # Specify the target guild
-    synced = await tree.sync(guild=guild)  # Sync commands for a specific guild
-    print(f"Slash commands synced to guild {GUILD_ID}: {synced}")
-    print(f"Bot logged in as {bot.user}")
+    try:
+        guild = discord.Object(id=int(GUILD_ID))  # Specify the target guild
+        synced = await tree.sync(guild=guild)  # Sync commands for a specific guild
+        print(f"Slash commands synced to guild {GUILD_ID}: {synced}")
+        print(f"Bot logged in as {bot.user}")
+    except Exception as e:
+        print(f"Error during sync: {e}")
 
 bot.run(TOKEN)
