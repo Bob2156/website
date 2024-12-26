@@ -6,7 +6,8 @@
     <title>Simple Vercel Site</title>
     <script>
         function showMessage() {
-            alert("Button clicked! Welcome to my website!");
+            const messageContainer = document.getElementById("message");
+            messageContainer.textContent = "Button clicked! Welcome to my website!";
         }
     </script>
 </head>
@@ -14,5 +15,6 @@
     <h1>Hello, World!</h1>
     <p>This is a simple website hosted on Vercel.</p>
     <button onclick="showMessage()">Click Me</button>
+    <p id="message" style="color: blue; font-weight: bold;"></p>
 </body>
 </html>
