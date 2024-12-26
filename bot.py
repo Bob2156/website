@@ -2,10 +2,10 @@ import discord
 import requests
 import os
 
-# Load the bot token from environment variables
+# Load the Discord bot token from environment variables
 TOKEN = os.environ.get("DISCORD_BOT_TOKEN")
 
-# URL to update the JSON file hosted on Vercel
+# URL to the JSON file hosted on Vercel
 API_URL = "https://your-vercel-domain.vercel.app/data/message.json"
 
 intents = discord.Intents.default()
