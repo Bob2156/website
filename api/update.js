@@ -1,15 +1,20 @@
-let message = ""; // Message to display on the website
+// Variable to store the latest message
+let message = "";
 
+// API handler
 export default function handler(req, res) {
     if (req.method === 'POST') {
+        // Update the message
         const { command } = req.body;
         if (command === "/ping") {
-            message = "!pong";
+            message = "!pong"; // Set the message
         }
-        return res.status(200).json({ success: true });
+        res.status(200).json({ success: true });
     } else if (req.method === 'GET') {
-        return res.status(200).json({ message });
+        // Return the latest message
+        res.status(200).json({ message });
     } else {
-        return res.status(405).json({ error: "Method Not Allowed" });
+        // Unsupported HTTP method
+        res.status(405).json({ error: "Method Not Allowed" });
     }
 }
